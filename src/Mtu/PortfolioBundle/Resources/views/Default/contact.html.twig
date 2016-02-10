@@ -1,0 +1,36 @@
+{% extends "MtuPortfolioBundle::base.html.twig" %}
+{% block pageTitle %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.title }}
+    {% else %}
+        {{ page.titleEng }}
+    {% endif %}
+{% endblock %}
+{% block pageDescription %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.description }}
+    {% else %}
+        {{ page.descriptionEng }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+ <header>
+    <div class="title">
+        {{ "<h2>Szybki <span>kontakt</span></h2>" |trans|raw }}
+    </div>
+</header>
+<section>
+   <div class="content">
+        {% form_theme form 'MtuPortfolioBundle:Form:fields.html.twig' %}
+        {{form(form) }}
+    </div>
+</section>
+<header>
+    <div class="title">
+        <div class="row">
+            {{ mtu_print_contact() }}
+        </div>
+    </div>
+</header>
+    
+{% endblock %}

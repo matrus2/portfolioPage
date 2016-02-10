@@ -1,0 +1,103 @@
+{% extends "MtuPortfolioBundle::base.html.twig" %}
+{% block pageTitle %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.title }}
+    {% else %}
+        {{ page.titleEng }}
+    {% endif %}
+{% endblock %}
+{% block pageDescription %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.description }}
+    {% else %}
+        {{ page.descriptionEng }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+{% for work in works %}
+    {% if app.request.get('_locale') == "pl" %}
+        <header><a name="{{ work.id }}"></a>
+            <div class="title">
+                <h2>{{ work.header |raw}}</h2>
+                <h3>{{ work.subHeader |raw}}</h3>
+            </div>
+        </header>
+        <section>
+            <div class="portfolio">
+                <div class="work">
+                    <img src="{{asset(work.getFileToView())}}"  alt="{% for service in work.services %}{{service}}, {%endfor%}">
+                </div>
+                <div class="info">
+                    <div class="services">
+                        <span class="service"></span><h4>Wykonane usługi:</h4>
+                        <ul>
+                            {% for service in work.services %}
+                            <li><span></span>{{ service }}</li>
+                            {% endfor %}
+                        </ul>
+                        <span class="tech"></span><h4>Użyte technologie:</h4>
+                        <ul>
+                            {% for tech in work.technologies %}
+                            <li><span></span>{{ tech }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <span class="mask_btn">
+                        <a href="{{ work.url }}" {% if work.rel == true %}{% else %}rel="nofollow"{% endif %} target="_blank" class="button" title="online">Zobacz</a></span>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <header><a name="{{ work.id }}"></a>
+            <div class="title">
+                <h2>{{ work.headerEng |raw}}</h2>
+                <h3>{{ work.subHeaderEng |raw}}</h3>
+            </div>
+        </header>
+        <section>
+            <div class="portfolio">
+                <div class="work">
+                    <img src="{{asset(work.getFileToView())}}" alt="{% for service in work.servicesEng %}{{service}}, {%endfor%}">
+                </div>
+                <div class="info">
+                    <div class="services">
+                        <span class="service"></span><h4>Services:</h4>
+                        <ul>
+                            {% for service in work.servicesEng %}
+                            <li><span></span>{{ service }}</li>
+                            {% endfor %}
+                        </ul>
+                        <span class="tech"></span><h4>Technologies:</h4>
+                        <ul>
+                            {% for tech in work.technologies %}
+                            <li><span></span>{{ tech }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <span class="mask_btn">
+                        <a href="{{ work.url }}" {% if work.rel == true %}{% else %}rel="nofollow"{% endif %} target="_blank" class="button" title="online">View</a></span>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endfor %}
+<header>
+    <div class="title">
+        {{ "<h2><span>Projekty</span> archiwalne</h2>" |trans|raw }}
+    </div>
+</header>
+<section>
+    <div class="portfolio">
+        <div class="info_arch">
+            <ul>
+{#                <li><span></span><a href="http://www.matrus.pl/stara" rel="nofollow" target="_blank">{{ "Strona 'matrus.pl'" |trans|raw }}</a></li>
+#}                <li><span></span><a href="http://dama.twojeartykuly.info/" rel="nofollow" target="_blank">{{ "Pizzeria 'Gruba Dama'" |trans|raw }}</a></li>
+                <li><span></span><a href="http://x-dive.matrus.pl/" rel="nofollow" target="_blank">{{ "Klub nurkowy 'X-Dive'" |trans|raw }}</a></li>
+                <li><span></span><a href="http://www.v-max.net.pl/" rel="nofollow" target="_blank">{{ "Firma 'V-max'" |trans|raw }}</a></li>
+                <li><span></span><a href="http://splywykajakowe.org.pl/" rel="nofollow" target="_blank">{{ "Portal 'splywykajakowe.org.pl'" |trans|raw }}</a></li> 
+                <li><span></span><a href="http://www.antyplagiat.twojeartykuly.info/" target="_blank">{{ "AntyPlagiat" |trans|raw }}</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

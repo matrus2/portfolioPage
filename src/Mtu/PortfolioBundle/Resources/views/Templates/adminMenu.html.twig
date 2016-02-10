@@ -1,0 +1,10 @@
+<ul class="nav navbar-nav">
+    {% for item in adminMenu %}
+        {% if app.request.get('_route') == item['route'] %}
+            <li class="active">
+        {% else %}
+            <li>
+        {% endif %}
+        <a href="{{ path(item['route']) }}#">{{ item['name'] }}</a>
+    {% endfor %}
+</ul>

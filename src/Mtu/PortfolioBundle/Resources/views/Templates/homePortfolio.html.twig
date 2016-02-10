@@ -1,0 +1,11 @@
+{% for work in works %}
+<div class="box">
+    <img src="{{asset(work.getFileToView)}}" alt="project portfolio {{work.technologies|join(', ') }}"/>
+    <div class="mask">
+        <h3>{% if app.request.get('_locale') == "pl" %}{{ work.header |raw}}{%else%}{{ work.headerEng |raw}}{%endif%}</h3>
+        <p>{{work.technologies|join(', ') }}
+        </p>
+        <a href="{{ path('mtu_portfolio_portfolio') }}#{{ work.id }}" class="info">{{ "Szczegóły" |trans}}</a>
+    </div>
+</div>
+{% endfor %}

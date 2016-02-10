@@ -1,0 +1,52 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+    <div class="title">
+        <h2>Contact <span>page</span></h2>
+    </div>
+</header> 
+<div class="main">
+    <div class="add_new">
+        <form role="form" method="post" action="#" class="form_add" novalidate="true">
+            <div class="contact">
+                <div class="output">
+                    <span></span><h4>The fields have been updated.</h4>
+                </div>
+                {% for key in dane.dane %}
+                    <div class="field">
+                        <div class="input">
+                            <label class="control-label" for="key">Pl</label>
+                            <input type="text" placeholder="key" value="{{ key.key1 }}" class="key" id="key1" name="key1">
+                            <input type="text" placeholder="value" value="{{ key.value1 }}" class="value" id="value1" name="value1">
+                            <label class="control-label" for="key">En</label>
+                            <input type="text" placeholder="key" class="key" value="{{ key.key2 }}" id="key1" name="key2">
+                            <input type="text" placeholder="value" class="value" value="{{ key.value2 }}" id="value1" name="value2">
+                        </div>
+                        <div class="buttons">
+                            <span class="remove remItem" title="delete"></span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="field"><div class="buttoner"><button>Add new <span></span></button></div></div>
+            </div>
+            <div class="Save">
+                <input type="submit" value="Save Changes"></div>
+        </form>
+    </div>
+</div>
+<header>
+    <div class="title">
+        <h2><span>Avatar</span></h2>
+    </div>
+</header>
+<div class="main">
+    <div class="add_new">
+        <form role="form" method="post" action="#" class="form_add" novalidate="true">
+            <div class="field"><img src="{{ dane.getFileAToView() }}" class="img_a"></div>
+            <div class="field"><input type="file" name="avatar" class="avatarImg"></div>
+            <div class="Save">
+                <input type="submit" value="Change avatar (200x200)"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+<div class="title">
+    <h2>Pages <span>data</span></h2>
+</div>
+</header>
+<div class="main">
+    <div class="add_new" role="tabpanel">
+        <ul class="navs" role="tablist">
+          <li role="presentation" class="active"><a href="#first" aria-controls="first" role="pill" data-toggle="pill">{{ page[0].nameEng }}</a></li>
+          <li role="presentation"><a href="#second" aria-controls="second" role="pill" data-toggle="pill">{{ page[1].nameEng }}</a></li>
+          <li role="presentation"><a href="#third" aria-controls="third" role="pill" data-toggle="pill">{{ page[2].nameEng }}</a></li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="first">
+              <form role="form" class="form_add" method="post" action="#" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Name (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[0].name }}" name="name" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="HeaderPl">Title (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[0].title }}" id="HeaderPl" name="title"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea name="desc" id="descPl" rows="5">{{ page[0].description }}</textarea></div>
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Name (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng"  value="{{ page[0].nameEng }}" name="nameEng"></div>
+                        <div class="field"><label class="control-label" for="HeaderEng">Title (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng" value="{{ page[0].titleEng }}" name="titleEng"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea id="descEng" rows="5" name="descEng">{{ page[0].descriptionEng }}</textarea></div>
+                        <input type="hidden" name="page" value="0">
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="second">
+              <form role="form" class="form_add" method="post" action="#" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Name (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[1].name }}" name="name" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="HeaderPl">Title (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[1].title }}" id="HeaderPl" name="title"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea name="desc" id="descPl" rows="5">{{ page[1].description }}</textarea></div>
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Name (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng"  value="{{ page[1].nameEng }}" name="nameEng"></div>
+                        <div class="field"><label class="control-label" for="HeaderEng">Title (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng" value="{{ page[1].titleEng }}" name="titleEng"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea id="descEng" rows="5" name="descEng">{{ page[1].descriptionEng }}</textarea></div>
+                        <input type="hidden" name="page" value="1">
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="third">
+              <form role="form" class="form_add" method="post" action="#" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Name (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[2].name }}" name="name" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="HeaderPl">Title (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ page[2].title }}" id="HeaderPl" name="title"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea name="desc" id="descPl" rows="5">{{ page[2].description }}</textarea></div>
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Name (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng"  value="{{ page[2].nameEng }}" name="nameEng"></div>
+                        <div class="field"><label class="control-label" for="HeaderEng">Title (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng" value="{{ page[2].titleEng }}" name="titleEng"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea id="descEng" rows="5" name="descEng">{{ page[2].descriptionEng }}</textarea></div>
+                        <input type="hidden" name="page" value="2">
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

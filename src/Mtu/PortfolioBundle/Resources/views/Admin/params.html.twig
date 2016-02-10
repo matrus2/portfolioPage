@@ -1,0 +1,79 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+    <div class="title">
+        <h2>Manage your <span>skills</span></h2>
+    </div>
+</header>
+<div class="main">
+    <div class="add_new" role="tabpanel">
+        <ul class="navs" role="tablist">
+          <li role="presentation" class="active"><a href="#first" aria-controls="first" role="pill" data-toggle="pill">First</a></li>
+          <li role="presentation"><a href="#second" aria-controls="second" role="pill" data-toggle="pill">Second</a></li>
+          <li role="presentation"><a href="#third" aria-controls="third" role="pill" data-toggle="pill">Third</a></li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="first">
+              <form role="form" method="post" action="#" class="form_add" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Header (Pl) (span)</label><span class="er"><span></span></span><input type="text" name="header1" value="{{ p.header1 }}" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea name="desc1" id="descPl" rows="5">{{ p.desc1 }}</textarea></div>
+                        <div class="field"><label class="control-label" for="workimg">Upload photo (140x140)</label><span class="er"><span></span></span><input type="file" id="workimg"name="img1"></div><input type="hidden" name="skill" value="1">                    
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Header (Eng) (span)</label><span class="er"><span></span></span><input type="text" name="header1eng" id="HeaderEng" value="{{ p.header1Eng }}"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea name="desc1eng" id="descEng" rows="5">{{ p.desc1Eng }}</textarea></div>
+                        <div class="field"><img src="{{ p.getFileToView() }}" class="p_img"></div>
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="second">
+              <form role="form" class="form_add" method="post" action="#" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Header (Pl) (span)</label><span class="er"><span></span></span><input type="text" name="header2" value="{{ p.header2 }}" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea id="descPl" name="desc2" rows="5">{{ p.desc2 }}</textarea></div>
+                        <div class="field"><label class="control-label" for="workimg">Upload photo (140x140)</label><span class="er"><span></span></span><input type="file" name="img2" id="workimg"name="workimg"></div><input type="hidden" name="skill" value="2">   
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Header (Eng) (span)</label><span class="er"><span></span></span><input type="text" name="header2eng" id="HeaderEng" value="{{ p.header2Eng }}"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea id="descEng" name="desc2eng" rows="5">{{ p.desc2Eng }}</textarea></div>
+                        <div class="field"><img src="{{ p.getFile2ToView() }}" class="p_img"></div>
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="third">
+              <form role="form" class="form_add" method="post" action="#" novalidate="true">
+                    <div class="output">
+                        <span></span><h4>The fields have been changed.</h4>
+                    </div>
+                    <div class="left_side">
+                        <div class="field"><label class="control-label" for="HeaderPl">Header (Pl) (span)</label><span class="er"><span></span></span><input type="text" name="header3" value="{{ p.header3 }}" id="HeaderPl"></div>
+                        <div class="field"><label class="control-label" for="descPl">Description (Pl)</label><span class="er"><span></span></span><textarea id="descPl" name="desc3" rows="5">{{ p.desc3 }}</textarea></div>
+                        <div class="field"><label class="control-label" for="workimg">Upload photo (140x140)</label><span class="er"><span></span></span><input type="file" id="workimg" name="img3"></div><input type="hidden" name="skill" value="3">
+                    </div>
+                    <div class="right_side">
+                        <div class="field"><label class="control-label" for="HeaderEng">Header (Eng) (span)</label><span class="er"><span></span></span><input name="header3eng" type="text" id="HeaderEng" value="{{ p.header3Eng }}"></div>
+                        <div class="field"><label class="control-label" for="descEng">Description (Eng)</label><span class="er"><span></span></span><textarea id="descEng" name="desc3eng" rows="5">{{ p.desc3Eng }}</textarea></div>
+                        <div class="field"><img src="{{ p.getFile3ToView() }}" class="p_img"></div>
+                    </div>
+                    <div class="Save">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

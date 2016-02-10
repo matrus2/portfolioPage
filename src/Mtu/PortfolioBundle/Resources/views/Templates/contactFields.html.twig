@@ -1,0 +1,27 @@
+<div class="foto">
+    <img src="{{asset('/../uploads/'~params.pathA)}}" class="img-circle" alt="Bogusz Przybysławski">
+</div>
+<div class="name"><h3>Bogusz Przybysławski</h3></div>
+    <div class="ques">
+{% if app.request.get('_locale') == "pl" %}
+    {% for dana in params.dane %}
+        {{ dana.key1 }}<br>
+    {% endfor %}
+        </div>
+        <div class="ans">
+    {% for dana in params.dane %}
+        {{ dana.value1 }}<br>
+    {% endfor %}
+{%else%}
+    {% for dana in params.dane %}
+        {{ dana.key2 }}<br>
+    {% endfor %}
+        </div>
+        <div class="ans">
+    {% for dana in params.dane %}
+        {{ dana.value2 }}<br>
+    {% endfor %}
+    
+{%endif%}
+    
+    </div>

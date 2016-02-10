@@ -1,0 +1,16 @@
+<ul class="nav">
+    {% for item in mainMenu %}
+            <li><a href="{{ path(item['route']) }}#">
+        {% if app.request.get('_route') == item['route'] %}
+            <span class="{{ item['class'] }} active">
+        {% else %}
+            <span class="{{ item['class'] }}">
+            {% endif %}</span>
+        {% if app.request.get('_locale') == "pl" %}    
+            {{ item['name'] }}
+        {% else %}
+            {{ item['nameEng'] }}
+        {% endif %}
+    </a></li>    
+    {% endfor %}
+</ul>

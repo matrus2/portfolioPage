@@ -1,0 +1,84 @@
+{% extends "MtuPortfolioBundle::base.html.twig" %}
+{% block pageTitle %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.title }}
+    {% else %}
+        {{ page.titleEng }}
+    {% endif %}
+{% endblock %}
+{% block pageDescription %}
+    {% if app.request.get('_locale') == "pl" %}
+        {{ page.description }}
+    {% else %}
+        {{ page.descriptionEng }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+<header>
+    <div class="title">
+        {{ "<h2>Moje <span>umiejętności</span></h2>" |trans|raw }}
+    </div>
+</header>
+<section>
+    {% if app.request.get('_locale') == "pl" %}
+    <div class="content">
+        <div class="box">
+            <img src="{{ asset(params[0].getFileToView()) }}" alt="Programowanie symfony 2"/>
+            <h3>{{ params[0].header1 |raw}}</h3>
+            <p>{{ params[0].desc1}}</p>
+        </div>
+        <div class="box">
+            <img src="{{asset(params[0].getFile2ToView())}}" alt="Kodowanie CSS"/>
+            <h3>{{ params[0].header2 |raw}}</h3>
+            <p>{{ params[0].desc2 }}</p>
+        </div>
+        <div class="box">
+            <img src="{{asset(params[0].getFile3ToView())}}" alt="Optymalizacja stron internetowych"/>
+            <h3>{{ params[0].header3 |raw}}</h3>
+            <p>{{ params[0].desc3 }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="content">
+        <div class="box">
+            <img src="{{ asset(params[0].getFileToView()) }}" alt="Symfony 2 programming"/>
+            <h3>{{ params[0].header1Eng |raw}}</h3>
+            <p>{{ params[0].desc1Eng}}</p>
+        </div>
+        <div class="box">
+            <img src="{{asset(params[0].getFile2ToView())}}" alt="CSS Coding"/>
+            <h3>{{ params[0].header2Eng |raw}}</h3>
+            <p>{{ params[0].desc2Eng }}</p>
+        </div>
+        <div class="box">
+            <img src="{{asset(params[0].getFile3ToView())}}" alt="Website optimization"/>
+            <h3>{{ params[0].header3Eng |raw}}</h3>
+            <p>{{ params[0].desc3Eng }}</p>
+        </div>
+    </div>
+    {% endif %}    
+</section>
+<header>
+    <div class="title">
+        {{ "<h2>Ostatnie <span>prace</span></h2>" |trans|raw }}
+    </div>
+</header>
+<section>
+    <div class="content_works">
+        {{ mtu_print_latest() }}
+        <div class="clearfix"></div>
+        <span class="mask_btn">
+            <a href="{{ path('mtu_portfolio_portfolio') }}" title="{{ "Portfolio"|trans }}" class="button">{{ "Wszystkie"|trans }}</a>
+        </span>
+    </div>
+</section>
+<header>
+    <div class="title">
+        {{ "<h4>Chętnie podejmę <span>współpracę biznesową</span></h4>"|trans|raw }}
+        <span class="mask_btn">
+            <a href="{{ path('mtu_portfolio_contact') }}" title="{{"Formularz"|trans}}" class="button">{{ "Kontakt"|trans }}</a>
+        </span>
+    </div>
+</header>
+
+{% endblock %}

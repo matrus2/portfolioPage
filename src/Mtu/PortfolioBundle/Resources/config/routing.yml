@@ -1,0 +1,10 @@
+mtu_logout:
+    path:   /logout
+mtu_portfolio_annotations:
+    resource:   "@MtuPortfolioBundle/Controller/DefaultController.php"
+    type:       annotation
+    prefix:     /
+mtu_admin_dashboard:
+    resource: "@MtuPortfolioBundle/Controller/AdminController.php"
+    type: annotation
+    prefix: /dash

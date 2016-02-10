@@ -1,0 +1,52 @@
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
+security:
+    # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
+    encoders:
+        Symfony\Component\Security\Core\User\User: bcrypt
+
+    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory:
+                users:
+                    matrus2: { password: $2a$04$3kdqmKcPv6Mnqut0clLP4uMi7PJOhJIsghSdt7a/5m2CVmyLjpWdq, roles: [ 'ROLE_ADMIN' ] }
+
+    # the main part of the security, where you can set up firewalls
+    # for specific sections of your app
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        mtu_security:
+            pattern:    ^/
+            anonymous: ~
+#            http_basic: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /dash
+                csrf_provider: form.csrf_provider
+            logout:
+                path:   mtu_logout
+                target: mtu_portfolio_index
+#            remember_me:
+#                key:      "%secret%"
+#                lifetime: 31536000 # 365 days in seconds
+#                path:     /
+#                domain:   ~ # Defaults to the current domain from $_SERVER
+#                remember_me_parameter: login[remember_me]
+#            #
+#            http_basic:
+#                realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/dash, roles: ROLE_ADMIN }
+        - { path: ^/login_check, roles: ROLE_ADMIN }

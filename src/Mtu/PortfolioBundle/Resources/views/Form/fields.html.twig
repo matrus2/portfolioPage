@@ -1,0 +1,113 @@
+{% block form_row %}
+{% spaceless %}
+    <div class="group_er">
+        <div class="error"><span></span><p>{{ "Proszę wypełnić pole prawidłowo." |trans}}</p>
+        </div>
+    </div>
+    <div class="group">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        <span class="empty"></span>
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_widget_simple -%}
+    {% set type = type|default('text') -%}
+    <div class="input"><input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value |trans}}" {% endif %}/></div>
+{%- endblock form_widget_simple %}
+
+{% block textarea_widget -%}
+    <div class="input"><textarea rows="5" class="form-control" {{ block('widget_attributes') }}>{{ value |trans}}</textarea></div>
+{%- endblock textarea_widget %}
+
+{% block email_widget -%}
+    {% set type = type|default('email') %}
+    {{- block('form_widget_simple') -}}
+{%- endblock email_widget %}
+
+
+{% block button_widget -%}
+    {% if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <div class="button_row"><button class="button" type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button></div>
+{%- endblock button_widget %}
+
+
+{% block submit_widget -%}
+    {% set type = type|default('submit') %}
+    {{- block('button_widget') -}}
+{%- endblock submit_widget %}
+
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif %}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('control-label') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {%- endif %}
+{%- endblock form_label %}
+
+{% block button_label -%}{%- endblock %}
+
+{% block button_row -%}
+    <div class="group">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock button_row %}
+
+{% block form_start -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form class="form" name="{{ name }}" method="{{ form_method|lower }}" action="{{ action }}#"{% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} novalidate="true" enctype="multipart/form-data"{% endif %}>
+        <div class="output">
+            <span></span><h4>{{ "Twoja wiadomość została wysłana" |trans }}</h4>
+        </div>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{%- endblock form_start %}
+
+{% block form_end -%}
+    {% if not render_rest is defined or render_rest %}
+        {{- form_rest(form) -}}
+    {% endif -%}
+    </form>
+{%- endblock form_end %}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    <ul>
+        {%- for error in errors -%}
+            <li>{{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif %}
+{%- endblock form_errors %}

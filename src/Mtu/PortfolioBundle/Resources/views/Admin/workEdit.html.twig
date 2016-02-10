@@ -1,0 +1,34 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+    <div class="title">
+        <h2>Edit <span>work</span> id={{ work.id }}</h2>
+    </div>
+</header>
+<div class="main">
+    <div class="add_new">
+        <form role="form" class="form_add" method="post" action="#" novalidate="true">
+            <div class="output">
+                <span></span><h4>The work has been changed.</h4>
+            </div>
+            <div class="left_side">
+                <div class="field"><label class="control-label" for="HeaderPl">Header (Pl)</label><span class="er"><span></span></span><input type="text" value="{{ work.header }}" id="HeaderPl" name="HeaderPl"></div>
+                <div class="field"><label class="control-label" for="HeaderEng">Header (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng" value="{{ work.headerEng }}" name="HeaderEng"></div>
+                <div class="field"><label class="control-label" for="SubHeaderPl">SubHeader (Pl)</label><span class="er"><span></span></span><input type="text" id="SubHeaderPl" value="{{ work.subHeader }}" name="SubHeaderPl"></div>
+                <div class="field"><label class="control-label" for="SubHeaderEng">SubHeader (Eng)</label><span class="er"><span></span></span><input type="text" id="SubHeaderEng" value="{{ work.subHeaderEng }}" name="SubHeaderEng"></div>
+                <div class="field"><label class="control-label" for="Url">Website Url</label><span class="er"><span></span></span><input type="text" value="{{ work.Url }}" id="Url" name="Url"></div>
+                <div class="field"><div class="check"> follow<input type="checkbox" value="rel" {% if work.rel == true %}checked{% endif %} id="rel" name="rel"></div></div>
+            </div>
+            <div class="right_side">
+                <div class="field"><label class="control-label" for="ServicesPL">Services (Pl) (,)</label><span class="er"><span></span></span><input type="text" id="ServicesPL" value="{{ work.services|join(',') }}" name="ServicesPl"></div>
+                <div class="field"><label class="control-label" for="ServicesENG">Services (Eng) (,)</label><span class="er"><span></span></span><input type="text" id="ServicesENG" placeholder="ServicesENG" value="{{ work.servicesEng|join(',') }}" name="ServicesEng"></div>
+                <div class="field"><label class="control-label" for="Technologies">Technologies (,)</label><span class="er"><span></span></span><input type="text" id="Technologies" value="{{ work.technologies|join(',') }}" name="Technologies"></div>
+                <div class="field"><label class="control-label" for="workimg">Upload photo (660x280)</label><span class="er"><span></span></span><input type="file" id="workimg" name="workimg"></div>
+                <div class="field"><img src="{{ asset(work.getFileToView())}}" class="w_img"></div>
+              </div>
+            <div class="Save">
+                <input type="submit" value="Submit Changes" name="Submit"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

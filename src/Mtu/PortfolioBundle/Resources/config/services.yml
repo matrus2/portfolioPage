@@ -1,0 +1,6 @@
+services:
+    mtu_portfolio.twig.extension:
+        class: Mtu\PortfolioBundle\Twig\Extension\PortfolioExtension
+        arguments: ["@doctrine"]
+        tags:
+            - { name: twig.extension }

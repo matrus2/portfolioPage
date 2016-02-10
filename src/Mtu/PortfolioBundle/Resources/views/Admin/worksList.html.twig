@@ -1,0 +1,17 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+    <div class="title">
+        <h2>List of <span>works</span></h2>
+    </div>
+</header>
+<div class="main">
+    <div class="add_new">
+        <div class="works">
+            {% for work in works%}
+                <div><div class="single">{{ work.headerEng |raw }}<a href="{{ path('mtu_work_delete',{id:work.id})}}"><span class="remove" title="delete"></span></a><a href="{{ path('mtu_work_edit',{id:work.id})}}"><span class="edit" title="edit"></span></a></div></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>        
+{% endblock %}

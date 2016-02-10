@@ -1,0 +1,33 @@
+{% extends "MtuPortfolioBundle::admin.html.twig" %}
+{% block pageContent %}
+<header>
+    <div class="title">
+        <h2>Add <span>new</span> work</h2>
+    </div>
+</header>
+<div class="main">
+    <div class="add_new">
+        <form role="form" class="form_add new" method="post" action="#" novalidate="true">
+            <div class="output">
+                <span></span><h4>The work has been added.</h4>
+            </div>
+            <div class="left_side">
+                <div class="field"><label class="control-label" for="HeaderPl">Header (Pl)</label><span class="er"><span></span></span><input type="text" placeholder="HeaderPl" id="HeaderPl" name="HeaderPl"></div>
+                <div class="field"><label class="control-label" for="HeaderEng">Header (Eng)</label><span class="er"><span></span></span><input type="text" id="HeaderEng" placeholder="HeaderEng" name="HeaderEng"></div>
+                <div class="field"><label class="control-label" for="SubHeaderPl">SubHeader (Pl)</label><span class="er"><span></span></span><input type="text" id="SubHeaderPl" placeholder="SubheaderPl" name="SubHeaderPl"></div>
+                <div class="field"><label class="control-label" for="SubHeaderEng">SubHeader (Eng)</label><span class="er"><span></span></span><input type="text" id="SubHeaderEng" placeholder="SubHeaderENG" name="SubHeaderEng"></div>
+                <div class="field"><label class="control-label" for="Url">Website Url</label><span class="er"><span></span></span><input type="text" id="Url" placeholder="Url" name="Url"></div>
+                <div class="field"><div class="check"> nofollow<input type="checkbox" checked="true" id="rel"></div></div>
+            </div>
+            <div class="right_side">
+                <div class="field"><label class="control-label" for="ServicesPL">Services (Pl) (,)</label><span class="er"><span></span></span><input type="text" id="ServicesPL" placeholder="ServicesPL" name="ServicesPl"></div>
+                <div class="field"><label class="control-label" for="ServicesENG">Services (Eng) (,)</label><span class="er"><span></span></span><input type="text" id="ServicesENG" placeholder="ServicesENG" name="ServicesEng"></div>
+                <div class="field"><label class="control-label" for="Technologies">Technologies (,)</label><span class="er"><span></span></span><input type="text" id="Technologies" placeholder="Technologies" name="Technologies"></div>
+                <div class="field"><label class="control-label" for="workimg">Upload photo (660x280)</label><span class="er"><span></span></span><input type="file" id="workimg" name="workimg"></div>
+            </div>
+            <div class="Save">
+                <input type="submit" value="Add work" name="Submit"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}
