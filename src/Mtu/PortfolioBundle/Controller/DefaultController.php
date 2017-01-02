@@ -95,7 +95,9 @@ class DefaultController extends Controller
                
                 $sendFromEmail=$formData['email'];
                 $emailBody = $this->renderView('MtuPortfolioBundle:Email:contact.html.twig', array(
-                    'formData' => $formData));
+                    'formData' => $formData,
+                    'clientIp' => $request->getClientIp()));
+                
                 $emailTitle=$formData['title'].' [matrus.pl]';
                 
                 $email = \Swift_Message::newInstance()
