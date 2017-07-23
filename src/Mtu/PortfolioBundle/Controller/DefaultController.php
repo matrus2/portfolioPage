@@ -87,64 +87,62 @@ class DefaultController extends Controller
 //            'menu'  =>  $this->getMainMenu($page)
             );
     }
-     /**
-     * @Route(
-     *      "/portfolio/{_locale}", 
-     *      name = "mtu_portfolio_portfolio",
-     *      requirements={"_locale":"pl|en"},
-     *      defaults={"_locale":"en"}
-     * )
-     * @Template()
-     */
-    public function portfolioAction()
-    {
-        return $this->redirect('/',301);
-        $repoWorks=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Works');
-        $works=$repoWorks->findAll();
-            
-        $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
-        $page=$repoPages->findAll();
-        
-        return array(
-            'page'  =>  $page[1],
-            'works'  =>  $works,
-            'menu'  =>  $this->getMainMenu($page)
-        );
-    }
-    /**
-     * @Route(
-     *      "/contact/{_locale}", 
-     *      name = "mtu_portfolio_contact",
-     *      requirements={"_locale":"pl|en"},
-     *      defaults={"_locale":"en"}
-     *      
-     * )
-     * @Template()
-     * 
-     * method="POST"
-     */
-    public function contactAction(Request $request)
-    {
-        return $this->redirect('/',301);
-
-        $preData=array(
-            'name'=>'Jan Kowalski',
-            'email'=>'twoj@email.pl',
-            'title'=>'np. Spotkanie',
-            'message'=>'Tekst wiadomości'
-        );
-        
-        $form = $this->createForm(new ContactType(),$preData);
-
-        $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
-        $page=$repoPages->findAll();
-                
-        return array(
-                    'page'  =>  $page[2],
-                    'form'  =>  $form->createView(),
-                    'menu'  =>  $this->getMainMenu($page)
-        );
-    }
+//     /**
+//     * @Route(
+//     *      "/portfolio/{_locale}",
+//     *      name = "mtu_portfolio_portfolio",
+//     *      requirements={"_locale":"pl|en"},
+//     *      defaults={"_locale":"en"}
+//     * )
+//     * @Template()
+//     */
+//    public function portfolioAction()
+//    {
+//        $repoWorks=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Works');
+//        $works=$repoWorks->findAll();
+//
+//        $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
+//        $page=$repoPages->findAll();
+//
+//        return array(
+//            'page'  =>  $page[1],
+//            'works'  =>  $works,
+//            'menu'  =>  $this->getMainMenu($page)
+//        );
+//    }
+//    /**
+//     * @Route(
+//     *      "/contact/{_locale}",
+//     *      name = "mtu_portfolio_contact",
+//     *      requirements={"_locale":"pl|en"},
+//     *      defaults={"_locale":"en"}
+//     *
+//     * )
+//     * @Template()
+//     *
+//     * method="POST"
+//     */
+//    public function contactAction(Request $request)
+//    {
+//
+//        $preData=array(
+//            'name'=>'Jan Kowalski',
+//            'email'=>'twoj@email.pl',
+//            'title'=>'np. Spotkanie',
+//            'message'=>'Tekst wiadomości'
+//        );
+//
+//        $form = $this->createForm(new ContactType(),$preData);
+//
+//        $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
+//        $page=$repoPages->findAll();
+//
+//        return array(
+//                    'page'  =>  $page[2],
+//                    'form'  =>  $form->createView(),
+//                    'menu'  =>  $this->getMainMenu($page)
+//        );
+//    }
     
     /**
      * @Route(
