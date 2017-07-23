@@ -11715,7 +11715,6 @@ function getCookie(cname) {
 };
 function postForm( $form, send, callback ){
     var values = {};
-        console.log(this);
 
     $.each( $form.serializeArray(), function(i, field) {
       values[field.name] = field.value;

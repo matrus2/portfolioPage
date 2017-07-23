@@ -21,7 +21,6 @@ class DefaultController extends Controller
      * 
      * @Template()
      */
-    
     public function indexAction(Request $request)
     {
         //$locale = $request->getLocale();
@@ -30,11 +29,62 @@ class DefaultController extends Controller
         
         $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
         $page=$repoPages->findAll(array('nameEng'=>'Home'));
-        
+
+        $preData=array(
+            'name'=>'Jan Kowalski',
+            'email'=>'twoj@email.pl',
+            'title'=>'np. Spotkanie',
+            'message'=>'Tekst wiadomości'
+        );
+
+        $form = $this->createForm(new ContactType(),$preData);
+
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $formData=$form->getData();
+                try {
+                    $emailRepo = $this->getDoctrine()->getRepository('MtuPortfolioBundle:Params');
+                    $objEmail = $emailRepo->getContactEmail();
+                    $sendToEmail=$objEmail['email'];
+
+                    $sendFromEmail=$formData['email'];
+                    $emailBody = $this->renderView('MtuPortfolioBundle:Email:contact.html.twig', array(
+                        'formData' => $formData,
+                        'clientIp' => $request->getClientIp()));
+
+                    $emailTitle=$formData['title'].' [matrus.pl]';
+
+                    $email = \Swift_Message::newInstance()
+                        ->setSubject($emailTitle)
+                        ->setTo($sendToEmail)
+                        ->setFrom($sendFromEmail)
+                        ->setBody($emailBody, 'text/html','utf-8')
+                        ->setReplyTo($sendFromEmail);
+
+                    $this->get('mailer')->send($email);
+
+                    $status='success';
+
+                } catch(\Exception $e){
+                    $status='failure';
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                };
+
+            } else {
+                $status='failure';
+            }
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array(
+                'status' => $status,
+            ));
+        }
+
         return array(
             'page'  =>  $page[0],
+            'status' => 'asdsadsa',
             'params'=>  $params,
-            'menu'  =>  $this->getMainMenu($page)
+            'form'  =>  $form->createView(),
+//            'menu'  =>  $this->getMainMenu($page)
             );
     }
      /**
@@ -48,9 +98,9 @@ class DefaultController extends Controller
      */
     public function portfolioAction()
     {
-            
+        return $this->redirect('/',301);
         $repoWorks=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Works');
-        $works=$repoWorks->findAl();
+        $works=$repoWorks->findAll();
             
         $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
         $page=$repoPages->findAll();
@@ -75,6 +125,8 @@ class DefaultController extends Controller
      */
     public function contactAction(Request $request)
     {
+        return $this->redirect('/',301);
+
         $preData=array(
             'name'=>'Jan Kowalski',
             'email'=>'twoj@email.pl',
@@ -83,42 +135,7 @@ class DefaultController extends Controller
         );
         
         $form = $this->createForm(new ContactType(),$preData);
-        
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
-            if($form->isValid()){
-                $formData=$form->getData();
-                
-                $emailRepo = $this->getDoctrine()->getRepository('MtuPortfolioBundle:Params');
-                $objEmail = $emailRepo->getContactEmail();
-                $sendToEmail=$objEmail['email'];
-               
-                $sendFromEmail=$formData['email'];
-                $emailBody = $this->renderView('MtuPortfolioBundle:Email:contact.html.twig', array(
-                    'formData' => $formData,
-                    'clientIp' => $request->getClientIp()));
-                
-                $emailTitle=$formData['title'].' [matrus.pl]';
-                
-                $email = \Swift_Message::newInstance()
-                        ->setSubject($emailTitle)
-                        ->setTo($sendToEmail)
-                        ->setFrom($sendFromEmail)
-                        ->setBody($emailBody, 'text/html','utf-8')
-                        ->setReplyTo($sendFromEmail);
-                
-                $this->get('mailer')->send($email);
-                
-                $status='success';
-               
-            }else{
-               $status='failure';
-            }
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array(
-                'status' => $status,
-                ));
-        }
-        
+
         $repoPages=$this->getDoctrine()->getRepository('MtuPortfolioBundle:Pages');
         $page=$repoPages->findAll();
                 

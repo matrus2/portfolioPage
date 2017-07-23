@@ -58,26 +58,39 @@
     </div>
     {% endif %}    
 </section>
+{#<header>#}
+    {#<div class="title">#}
+        {#{{ "<h2>Ostatnie <span>prace</span></h2>" |trans|raw }}#}
+    {#</div>#}
+{#</header>#}
+{#<section>#}
+    {#<div class="content_works">#}
+        {#{{ mtu_print_latest() }}#}
+        {#<div class="clearfix"></div>#}
+        {#<span class="mask_btn">#}
+            {#<a href="{{ path('mtu_portfolio_portfolio') }}" title="{{ "Portfolio"|trans }}" class="button">{{ "Wszystkie"|trans }}</a>#}
+        {#</span>#}
+    {#</div>#}
+{#</section>#}
 <header>
     <div class="title">
-        {{ "<h2>Ostatnie <span>prace</span></h2>" |trans|raw }}
+        {{ "<h4>Chętnie podejmę <span>współpracę biznesową</span></h4>"|trans|raw }}
+        {#<span class="mask_btn">#}
+            {#<a href="{{ path('mtu_portfolio_contact') }}" title="{{"Formularz"|trans}}" class="button">{{ "Kontakt"|trans }}</a>#}
+        {#</span>#}
     </div>
 </header>
 <section>
-    <div class="content_works">
-        {{ mtu_print_latest() }}
-        <div class="clearfix"></div>
-        <span class="mask_btn">
-            <a href="{{ path('mtu_portfolio_portfolio') }}" title="{{ "Portfolio"|trans }}" class="button">{{ "Wszystkie"|trans }}</a>
-        </span>
+    <div class="content">
+        {% form_theme form 'MtuPortfolioBundle:Form:fields.html.twig' %}
+        {{form(form) }}
     </div>
 </section>
 <header>
     <div class="title">
-        {{ "<h4>Chętnie podejmę <span>współpracę biznesową</span></h4>"|trans|raw }}
-        <span class="mask_btn">
-            <a href="{{ path('mtu_portfolio_contact') }}" title="{{"Formularz"|trans}}" class="button">{{ "Kontakt"|trans }}</a>
-        </span>
+        <div class="row">
+            {{ mtu_print_contact() }}
+        </div>
     </div>
 </header>
 
